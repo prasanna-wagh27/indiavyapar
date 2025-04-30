@@ -2,7 +2,7 @@ package com.indiavyapar.webservice.exception;
 
 import java.io.Serializable;
 
-public class IndiaVyaparException implements Serializable {
+public class IndiaVyaparException extends RuntimeException implements Serializable {
 
 	/**
 	 * 

@@ -1,5 +1,7 @@
 package com.indiavyapar.webservice.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public void addUser(UserBO userBO) throws Exception {
+	public void registerUser(UserBO userBO) throws Exception {
 
 		if(userRepo.findByEmail(userBO.getEmail()).isPresent()) {
 			throw new IndiaVyaparException(ErrorConstants.INVALID.toString(), "User with this E-mail is already present. Please Login or use different E-mail to register");
@@ -41,4 +43,36 @@ public class UserServiceImpl implements UserService {
 		
 		userRepo.save(user);
 	}
+
+	
+	
+	@Override
+	public User getUserById(UUID userId) throws Exception {
+		
+		User exiUser = userRepo.findById(userId)
+				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "User not found")) 	;
+		return exiUser;
+	}
+
+
+
+	@Override
+	public void updateUser(UUID userId, UserBO userBO) throws Exception {
+		User exiUser = getUserById(userId);
+		
+		if(userBO.getEmail() != exiUser.getEmail() && userRepo.existsByEmail()) {
+			throw new IndiaVyaparException(ErrorConstants.INVALID.toString(), "User with this E-mail is already present. Please Login or use different E-mail.");
+		}
+		
+		if(userBO.getPhoneNumber() != exiUser.getPhoneNumber() && userRepo.existsByPhoneNumber()) {
+			throw new IndiaVyaparException(ErrorConstants.INVALID.toString(), "User with this Phone Number is already present. Please Login or use different Phone Number.");
+		}
+		
+		exiUser.setFullName(userBO.getFullName());
+		exiUser.setUserType(userBO.getUserType());
+		userRepo.save(exiUser);
+		
+	}
+	
+	
 }

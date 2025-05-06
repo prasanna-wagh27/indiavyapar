@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(UUID userId) throws Exception {
 		
 		User exiUser = userRepo.findById(userId)
-				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "User not found")) 	;
+				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "User not found"));
 		return exiUser;
 	}
 

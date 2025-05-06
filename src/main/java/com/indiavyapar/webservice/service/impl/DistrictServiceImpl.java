@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.indiavyapar.webservice.bo.Response;
 import com.indiavyapar.webservice.constants.ErrorConstants;
@@ -15,6 +16,7 @@ import com.indiavyapar.webservice.repository.DistrictRepository;
 import com.indiavyapar.webservice.repository.StateRepository;
 import com.indiavyapar.webservice.service.DistrictService;
 
+@Service
 public class DistrictServiceImpl implements DistrictService {
 
 	@Autowired

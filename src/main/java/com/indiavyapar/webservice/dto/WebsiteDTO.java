@@ -1,112 +1,41 @@
-package com.indiavyapar.webservice.entity;
+package com.indiavyapar.webservice.dto;
 
-import java.io.Serializable;
 import java.util.UUID;
-
-import org.hibernate.annotations.JdbcTypeCode;
 
 import com.indiavyapar.webservice.constants.BusinessType;
 import com.indiavyapar.webservice.constants.WebsiteStatus;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "website")
-public class Website extends Auditable implements Serializable{
+public class WebsiteDTO {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "website_id", updatable = false, nullable = false)
-	@JdbcTypeCode(java.sql.Types.VARCHAR)
 	private UUID websiteId;
-	
-	@JoinColumn(name = "user_id")
-	@JdbcTypeCode(java.sql.Types.VARCHAR)
-	@ManyToOne(targetEntity = User.class)
-	private User user;
-	
-	@Column(name = "title", nullable = false)
+	private UUID userId;
 	private String title;
-	
-	@Column(name = "slogan")
 	private String slogan;
-	
-	@Column(name = "about_us", columnDefinition = "LONGTEXT")
 	private String aboutUs;
-	
-	@Column(name = "template_id")
 	private String templateId;
-	
-	@Column(name = "url_slug")
 	private String urlSlug;
-	
-	@Column(name = "business_name")
 	private String businessName;
-
-	@Column(name = "category")
-    private String category;
-
-	@Column(name = "year_of_establishment")
-    private String yearOfEstablishment;
-
-	@Column(name = "nature_of_business")
-    private String natureOfBusiness;
-
-	@Column(name = "google_map_link")
-    private String googleMapLink;
-
-	@Column(name = "phone_number")
-    private String phoneNumber;
-
-	@Column(name = "whatsapp_number")
-    private String whatsappNumber;
-
-	@Column(name = "email")
-    private String email;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "website_status")
-    private WebsiteStatus websiteStatus;
-
-    @Column(name = "brochure_url")
-    private String brochureUrl;
-    
-    @Column(name = "business_type")
-    @Enumerated(EnumType.STRING)
-    private BusinessType businessType;
-    
-    @Column(name = "facebook_link")
-    public String facebookLink;
-    
-    @Column(name = "instagram_link")
-    public String instagramLink;
-    
-    @Column(name = "x_link")
-    public String xLink;
-    
-    @Column(name = "business_specialisations", columnDefinition = "LONGTEXT")
-    private String specialisations;
-    
-    
-    @JoinColumn(name = "business_address_id", nullable = true)
-    @JdbcTypeCode(java.sql.Types.VARCHAR)
-    @OneToOne(targetEntity = BusinessAddress.class)
-    private BusinessAddress businessAddress;
+	private String category;
+	private String yearOfEstablishment;
+	private String natureOfBusiness;
+	private String addressLineOne;
+	private String addressLine2;
+	private String city;
+	private String state;
+	private String pincode;
+	private String googleMapLink;
+	private String phoneNumber;
+	private String whatsappNumber;
+	private String email;
+	private WebsiteStatus websiteStatus;
+	private String brochureUrl;
+	private BusinessType businessType;
+	public String facebookLink;
+	public String instagramLink;
+	public String xLink;
+	private String specialisations;
 
 	public UUID getWebsiteId() {
 		return websiteId;
@@ -116,12 +45,12 @@ public class Website extends Auditable implements Serializable{
 		this.websiteId = websiteId;
 	}
 
-	public User getUser() {
-		return user;
+	public UUID getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(UUID userId) {
+		this.userId = userId;
 	}
 
 	public String getTitle() {
@@ -194,6 +123,46 @@ public class Website extends Auditable implements Serializable{
 
 	public void setNatureOfBusiness(String natureOfBusiness) {
 		this.natureOfBusiness = natureOfBusiness;
+	}
+
+	public String getAddressLineOne() {
+		return addressLineOne;
+	}
+
+	public void setAddressLineOne(String addressLineOne) {
+		this.addressLineOne = addressLineOne;
+	}
+
+	public String getAddressLine2() {
+		return addressLine2;
+	}
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 	public String getGoogleMapLink() {
@@ -276,20 +245,14 @@ public class Website extends Auditable implements Serializable{
 		this.xLink = xLink;
 	}
 
-	public BusinessAddress getBusinessAddress() {
-		return businessAddress;
-	}
-
-	public void setBusinessAddress(BusinessAddress businessAddress) {
-		this.businessAddress = businessAddress;
-	}
-
 	public String getSpecialisations() {
 		return specialisations;
 	}
 
 	public void setSpecialisations(String specialisations) {
 		this.specialisations = specialisations;
-	}	
+	}
 	
+	
+
 }

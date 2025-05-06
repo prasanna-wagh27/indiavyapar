@@ -61,7 +61,7 @@ public class StateController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/{stateId")
+	@GetMapping("/{stateId}")
 	public ResponseEntity<Response> getStateById(@PathVariable("stateId") UUID stateId) throws Exception{
 		Response response =  new Response();
 		response.setStatus(ErrorConstants.SUCCESS.toString());

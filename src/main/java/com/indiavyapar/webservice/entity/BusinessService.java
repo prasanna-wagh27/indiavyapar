@@ -34,7 +34,7 @@ public class BusinessService extends Auditable implements Serializable{
     @JoinColumn(name = "website_id")
     @ManyToOne(targetEntity = Website.class)
     @JdbcTypeCode(java.sql.Types.VARCHAR)
-    private UUID websiteId;
+    private Website website;
 
     @Column(name = "service_name", nullable = false, length = 255)
     private String serviceName;
@@ -57,12 +57,12 @@ public class BusinessService extends Auditable implements Serializable{
 		this.businessServiceId = businessServiceId;
 	}
 
-	public UUID getWebsiteId() {
-		return websiteId;
+	public Website getWebsite() {
+		return website;
 	}
 
-	public void setWebsiteId(UUID websiteId) {
-		this.websiteId = websiteId;
+	public void setWebsite(Website website) {
+		this.website = website;
 	}
 
 	public String getServiceName() {

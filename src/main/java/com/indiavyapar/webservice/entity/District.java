@@ -1,6 +1,7 @@
 package com.indiavyapar.webservice.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
 
@@ -25,7 +26,7 @@ public class District extends Auditable implements Serializable {
 	@GeneratedValue
 	@JdbcTypeCode(java.sql.Types.VARCHAR)
 	@Column(name = "district_id")
-	private String districtId;
+	private UUID districtId;
 	
 	@Column(name = "district_name")
 	private String districtName;
@@ -37,11 +38,11 @@ public class District extends Auditable implements Serializable {
 	@Column(name = "status")
 	private boolean status;
 
-	public String getDistrictId() {
+	public UUID getDistrictId() {
 		return districtId;
 	}
 
-	public void setDistrictId(String districtId) {
+	public void setDistrictId(UUID districtId) {
 		this.districtId = districtId;
 	}
 

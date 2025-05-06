@@ -60,11 +60,11 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UUID userId, UserBO userBO) throws Exception {
 		User exiUser = getUserById(userId);
 		
-		if(userBO.getEmail() != exiUser.getEmail() && userRepo.existsByEmail()) {
+		if(userBO.getEmail() != exiUser.getEmail() && userRepo.existsByEmail(userBO.getEmail())) {
 			throw new IndiaVyaparException(ErrorConstants.INVALID.toString(), "User with this E-mail is already present. Please Login or use different E-mail.");
 		}
 		
-		if(userBO.getPhoneNumber() != exiUser.getPhoneNumber() && userRepo.existsByPhoneNumber()) {
+		if(userBO.getPhoneNumber() != exiUser.getPhoneNumber() && userRepo.existsByPhoneNumber(userBO.getPhoneNumber())) {
 			throw new IndiaVyaparException(ErrorConstants.INVALID.toString(), "User with this Phone Number is already present. Please Login or use different Phone Number.");
 		}
 		

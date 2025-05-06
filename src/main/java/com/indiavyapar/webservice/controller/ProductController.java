@@ -3,6 +3,10 @@ package com.indiavyapar.webservice.controller;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,5 +46,36 @@ public class ProductController {
 	        response.setStatus(ErrorConstants.SUCCESS.toString());
 	        return new ResponseEntity<>(response, HttpStatus.OK);
 	    }
+	    
+	    @CrossOrigin
+	    @GetMapping("/website/{websiteId}")
+	    public ResponseEntity<Response> getAllProductsByWebsite(@PathVariable UUID websiteId,
+	    		   @PageableDefault(page = 0, size = 10)
+        @SortDefault(sort = "productId", direction = Sort.Direction.ASC) Pageable pageable) throws Exception {
+	        Response response = productService.getAllProductsByWebsite(websiteId, pageable);
+	        response.setStatus(ErrorConstants.SUCCESS.toString());
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	    }
+
+	    @CrossOrigin
+	    @GetMapping("/website/{websiteId}/active")
+	    public ResponseEntity<Response> getAllActiveProductsByWebsite(@PathVariable UUID websiteId,
+	    		   @PageableDefault(page = 0, size = 10)
+        @SortDefault(sort = "productId", direction = Sort.Direction.ASC) Pageable pageable) throws Exception {
+	        Response response = productService.getAllActiveProductsByWebsite(websiteId, pageable);
+	        response.setStatus(ErrorConstants.SUCCESS.toString());
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	    }
+
+	    @CrossOrigin
+	    @PostMapping("/update/{productId}")
+	    public ResponseEntity<Response> updateProduct(@PathVariable UUID productId, @RequestBody ProductBO productBO) throws Exception {
+	        productService.updateProduct(productId, productBO);
+	        Response response = new Response();
+	        response.setStatus(ErrorConstants.SUCCESS.toString());
+	        response.setMessage("Product updated successfully");
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	    }
+
 
 }

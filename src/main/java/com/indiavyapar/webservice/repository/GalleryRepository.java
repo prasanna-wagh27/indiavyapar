@@ -6,13 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.indiavyapar.webservice.entity.Product;
+import com.indiavyapar.webservice.entity.Gallery;
 import com.indiavyapar.webservice.entity.Website;
 
-public interface ProductRepository extends JpaRepository<Product, UUID> {
+public interface GalleryRepository extends JpaRepository<Gallery, UUID> {
 
-	Page<Product> findAllByWebsite(Website website, Pageable pageable);
+	Page<Gallery> findAllByWebsite(Website website, Pageable pageable);
 
-	Page<Product> findAllByWebsiteAndIsActiveTrue(Website website, Pageable pageable);
-
+	Page<Gallery> findAllByWebsiteAndIsActiveTrue(Website website, Pageable pageable);
 }

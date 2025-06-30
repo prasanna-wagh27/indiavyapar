@@ -32,7 +32,8 @@ public class StateController {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Response> addState(@RequestBody State state) throws Exception{
+	public ResponseEntity<Response> addState(@RequestBody State state) throws Exception{	
+		System.out.println("Hit");
 		stateService.addState(state);
 		Response response = new Response();
 		response.setStatus(ErrorConstants.SUCCESS.toString());
@@ -41,7 +42,7 @@ public class StateController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/")
+	@GetMapping()
 	public ResponseEntity<Response> getAllStates(@SortDefault(sort = "stateName", direction = Direction.ASC) 
 	@PageableDefault(page = 0, size = 10) Pageable pageable) throws Exception{
 		Response response = stateService.getAllStates(pageable);

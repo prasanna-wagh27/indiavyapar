@@ -48,7 +48,6 @@ public class DistrictServiceImpl implements DistrictService {
 	@Override
 	public Response getActiveDistricts(UUID stateId, Pageable pageable) throws Exception {
 		Response response = new Response();
-
 		Page<District> page = districtRepo.getActiveDistricts(stateId, pageable);
 		response.setData(page.getContent());
 		response.setListCount(page.getTotalElements());

@@ -57,7 +57,7 @@ public class BusinessServiceServiceImpl implements BusinessServiceService {
         serviceRepo.save(existing);
     }
 
-    @Override
+	@Override
     public Response getServiceById(UUID serviceId) throws Exception {
         BusinessService service = serviceRepo.findById(serviceId)
                 .orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "Service not found"));

@@ -18,7 +18,7 @@ public interface DistrictRepository extends JpaRepository<District, UUID>{
 
 	@Query("SELECT d FROM District d WHERE(:stateId IS NULL OR d.state.stateId = :stateId) "
 			+ "AND d.status = true")
-	Page<District> getActiveDistricts(UUID stateId, Pageable pageable);
+	Page<District> getActiveDistricts(@Param("stateId") UUID stateId, Pageable pageable);
 
 	boolean existsByStateAndDistrictName(State state, String districtName);
 	

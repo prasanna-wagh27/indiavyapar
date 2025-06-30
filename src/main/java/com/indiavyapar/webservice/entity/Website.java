@@ -40,7 +40,7 @@ public class Website extends Auditable implements Serializable{
 	@ManyToOne(targetEntity = User.class)
 	private User user;
 	
-	@Column(name = "title", nullable = false)
+	@Column(name = "title", nullable = true)
 	private String title;
 	
 	@Column(name = "slogan")
@@ -101,7 +101,6 @@ public class Website extends Auditable implements Serializable{
     
     @Column(name = "business_specialisations", columnDefinition = "LONGTEXT")
     private String specialisations;
-    
     
     @JoinColumn(name = "business_address_id", nullable = true)
     @JdbcTypeCode(java.sql.Types.VARCHAR)

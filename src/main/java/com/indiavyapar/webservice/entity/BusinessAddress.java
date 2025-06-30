@@ -52,9 +52,6 @@ public class BusinessAddress extends Auditable implements Serializable {
 	
 	@Column(name = "google_map_link")
 	private String googleMapLink;
-	
-	@Column(name = "locality")
-	private String locality;
 
 	public UUID getBusinessAddressId() {
 		return businessAddressId;
@@ -119,13 +116,7 @@ public class BusinessAddress extends Auditable implements Serializable {
 	public void setGoogleMapLink(String googleMapLink) {
 		this.googleMapLink = googleMapLink;
 	}
-
-	public String getLocality() {
-		return locality;
-	}
-
-	public void setLocality(String locality) {
-		this.locality = locality;
-	}
+	
+	
 	
 }

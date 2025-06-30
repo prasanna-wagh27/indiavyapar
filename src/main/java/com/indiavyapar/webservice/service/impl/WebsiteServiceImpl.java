@@ -30,17 +30,17 @@ public class WebsiteServiceImpl implements WebsiteService {
 
 	@Override
 	public UUID saveBasicDetails(UUID userId, WebsiteDTO websiteDTO) throws Exception {
-
+		
 		User exiUser = userRepository.findById(userId)
-				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "User not found"));
-
+				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "User not found")) 	;
+		
 		Website website = new Website();
 		website.setBusinessName(websiteDTO.getBusinessName());
 		website.setSlogan(websiteDTO.getSlogan());
 
 		// Logo
 		website.setBusinessType(websiteDTO.getBusinessType());
-
+		
 		website.setUser(exiUser);
 		websiteRepository.save(website);
 		return website.getWebsiteId();
@@ -93,10 +93,10 @@ public class WebsiteServiceImpl implements WebsiteService {
 	public void saveOtherBusinessDetails(UUID websiteId, WebsiteDTO websiteDTO) throws Exception {
 		Website exiWebsite = websiteRepository.findById(websiteId)
 				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "Website not found"));
-
+		
 		exiWebsite.setYearOfEstablishment(websiteDTO.getYearOfEstablishment());
 		exiWebsite.setAboutUs(websiteDTO.getAboutUs());
-//		exiWebsite.setSpecialisations(websiteDTO.getSpecialisations());
+		exiWebsite.setSpecialisations(websiteDTO.getSpecialisations());
 		websiteRepository.save(exiWebsite);
 	}
 

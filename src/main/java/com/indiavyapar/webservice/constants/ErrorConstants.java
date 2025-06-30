@@ -15,7 +15,7 @@ public enum ErrorConstants {
 	private String displayName;
 	
 	ErrorConstants(String displayname){
-		this.displayName = displayname;
+		this.displayName = displayName;
 	}
 	
 	@Override

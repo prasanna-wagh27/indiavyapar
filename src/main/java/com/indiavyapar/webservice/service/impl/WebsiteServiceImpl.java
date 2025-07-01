@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.indiavyapar.webservice.constants.ErrorConstants;
 import com.indiavyapar.webservice.dto.WebsiteDTO;
@@ -15,6 +16,7 @@ import com.indiavyapar.webservice.repository.UserRepository;
 import com.indiavyapar.webservice.repository.WebsiteRepository;
 import com.indiavyapar.webservice.service.BusinessAddressService;
 import com.indiavyapar.webservice.service.WebsiteService;
+import com.indiavyapar.webservice.utility.FileUtility;
 
 @Service
 public class WebsiteServiceImpl implements WebsiteService {
@@ -27,19 +29,22 @@ public class WebsiteServiceImpl implements WebsiteService {
 
 	@Autowired
 	private BusinessAddressService businessAddressService;
+	
+	@Autowired
+	private FileUtility fileUtility;
 
 	@Override
-	public UUID saveBasicDetails(UUID userId, WebsiteDTO websiteDTO) throws Exception {
+	public UUID saveBasicDetails(MultipartFile file, WebsiteDTO websiteDTO) throws Exception {
 		
-		User exiUser = userRepository.findById(userId)
+		User exiUser = userRepository.findById(websiteDTO.getUserId())
 				.orElseThrow(() -> new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "User not found")) 	;
 		
 		Website website = new Website();
 		website.setBusinessName(websiteDTO.getBusinessName());
 		website.setSlogan(websiteDTO.getSlogan());
-
-		// Logo
 		website.setBusinessType(websiteDTO.getBusinessType());
+		
+		website.setLogo(fileUtility.saveImage(file));
 		
 		website.setUser(exiUser);
 		websiteRepository.save(website);
@@ -96,7 +101,7 @@ public class WebsiteServiceImpl implements WebsiteService {
 		
 		exiWebsite.setYearOfEstablishment(websiteDTO.getYearOfEstablishment());
 		exiWebsite.setAboutUs(websiteDTO.getAboutUs());
-		exiWebsite.setSpecialisations(websiteDTO.getSpecialisations());
+		//exiWebsite.setSpecialisations(websiteDTO.getSpecialisations());
 		websiteRepository.save(exiWebsite);
 	}
 

@@ -40,7 +40,7 @@ public class Website extends Auditable implements Serializable{
 	@ManyToOne(targetEntity = User.class)
 	private User user;
 	
-	@Column(name = "title", nullable = false)
+	@Column(name = "title", nullable = true)
 	private String title;
 	
 	@Column(name = "slogan")
@@ -107,6 +107,9 @@ public class Website extends Auditable implements Serializable{
     @JdbcTypeCode(java.sql.Types.VARCHAR)
     @OneToOne(targetEntity = BusinessAddress.class)
     private BusinessAddress businessAddress;
+    
+    @Column(name = "logo")
+    private String logo;
 
 	public UUID getWebsiteId() {
 		return websiteId;
@@ -290,6 +293,14 @@ public class Website extends Auditable implements Serializable{
 
 	public void setSpecialisations(String specialisations) {
 		this.specialisations = specialisations;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}	
 	
 }

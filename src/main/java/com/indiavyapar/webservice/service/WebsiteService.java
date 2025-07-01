@@ -2,12 +2,14 @@ package com.indiavyapar.webservice.service;
 
 import java.util.UUID;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.indiavyapar.webservice.dto.WebsiteDTO;
 import com.indiavyapar.webservice.entity.BusinessAddress;
 
 public interface WebsiteService {
 	
-	UUID saveBasicDetails(UUID userId, WebsiteDTO websiteDTO) throws Exception;
+	UUID saveBasicDetails(MultipartFile file, WebsiteDTO websiteDTO) throws Exception;
 
 	void saveContactDetails(UUID websiteId, WebsiteDTO websiteDTO) throws Exception;
 

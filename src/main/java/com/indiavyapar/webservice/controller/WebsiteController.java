@@ -4,13 +4,16 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.indiavyapar.webservice.bo.Response;
 import com.indiavyapar.webservice.constants.ErrorConstants;
@@ -26,10 +29,10 @@ public class WebsiteController {
 	private WebsiteService websiteService;
 	
 	@CrossOrigin
-	@PostMapping("/business/basic-details")
-	public ResponseEntity<Response> saveBasicDetails(@RequestParam("userId") UUID userId, @RequestBody WebsiteDTO websiteDTO)throws Exception{
+	@PostMapping(value = "/business/basic-details", consumes = {"multipart/form-data"})
+	public ResponseEntity<Response> saveBasicDetails(@RequestPart("websiteDTO") WebsiteDTO websiteDTO, @RequestPart("file") MultipartFile file)throws Exception{
 		Response response = new Response();
-		response.setData(websiteService.saveBasicDetails(userId, websiteDTO));
+		response.setData(websiteService.saveBasicDetails(file, websiteDTO));
 		response.setStatus(ErrorConstants.SUCCESS.toString());
 		response.setMessage("Details saved successfully");
 		return new ResponseEntity<Response>(response, HttpStatus.OK);

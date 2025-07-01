@@ -44,7 +44,7 @@ public class DistrictController {
 	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<Response> getAllDistrictsByState(@RequestParam(name = "stateId", required = false) UUID stateId,
-			@SortDefault(sort = "name", direction = Direction.ASC) 
+			@SortDefault(sort = "districtName", direction = Direction.ASC) 
 	@PageableDefault(page = 0, size = 10) Pageable pageable) throws Exception{
 		Response response = districtService.getAllDistrictsByState(stateId, pageable);
 		response.setStatus(ErrorConstants.SUCCESS.toString());

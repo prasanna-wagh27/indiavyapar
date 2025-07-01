@@ -41,7 +41,7 @@ public class StateController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/")
+	@GetMapping()
 	public ResponseEntity<Response> getAllStates(@SortDefault(sort = "stateName", direction = Direction.ASC) 
 	@PageableDefault(page = 0, size = 10) Pageable pageable) throws Exception{
 		Response response = stateService.getAllStates(pageable);

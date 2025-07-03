@@ -5,8 +5,11 @@ import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,11 +37,9 @@ public class ProductImage extends Auditable implements Serializable{
 
 	    @JdbcTypeCode(java.sql.Types.VARCHAR)
 	    @JoinColumn(name = "product_id")
-	    @ManyToOne(targetEntity = Product.class)
+	    @ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
+	    @JsonIgnore
 	    private Product product;
-	    
-	    @Column(name = "is_active", columnDefinition = "BOOLEAN DEFAULT FALSE")
-	    private boolean isActive;
 
 		public UUID getProductImageId() {
 			return productImageId;
@@ -63,13 +64,4 @@ public class ProductImage extends Auditable implements Serializable{
 		public void setProduct(Product product) {
 			this.product = product;
 		}
-
-		public boolean isActive() {
-			return isActive;
-		}
-
-		public void setActive(boolean isActive) {
-			this.isActive = isActive;
-		}
-	    
 }

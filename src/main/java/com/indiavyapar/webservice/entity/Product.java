@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,6 +40,7 @@ public class Product extends Auditable implements Serializable {
 	@JoinColumn(name = "website_id")
 	@JdbcTypeCode(java.sql.Types.VARCHAR)
 	@ManyToOne(targetEntity = Website.class)
+	@JsonIgnore
     private Website website;
 
 	@Column(name = "product_name")
@@ -54,6 +57,7 @@ public class Product extends Auditable implements Serializable {
     
     @Column(name = "is_active", columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean isActive;
+    
 
 	public UUID getProductId() {
 		return productId;
@@ -111,5 +115,4 @@ public class Product extends Auditable implements Serializable {
 		this.isActive = isActive;
 	}
 
-	
 }

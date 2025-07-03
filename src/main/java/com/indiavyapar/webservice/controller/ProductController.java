@@ -1,5 +1,6 @@
 package com.indiavyapar.webservice.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.indiavyapar.webservice.bo.ProductBO;
 import com.indiavyapar.webservice.bo.Response;
@@ -23,7 +26,7 @@ import com.indiavyapar.webservice.constants.ErrorConstants;
 import com.indiavyapar.webservice.service.ProductService;
 
 @RestController
-@RequestMapping("${url.prefix}/website/product")
+@RequestMapping("${url.prefix}/product")
 public class ProductController {
 	
 	 @Autowired
@@ -31,8 +34,9 @@ public class ProductController {
 
 	    @CrossOrigin
 	    @PostMapping("/create")
-	    public ResponseEntity<Response> createProduct(@RequestBody ProductBO productBO) throws Exception {
-	        productService.createProduct(productBO);
+	    public ResponseEntity<Response> createProduct(@RequestPart("images") List<MultipartFile> images,
+	    		@RequestPart("productBO") ProductBO productBO) throws Exception {
+	        productService.createProduct(images, productBO);
 	        Response response = new Response();
 	        response.setStatus(ErrorConstants.SUCCESS.toString());
 	        response.setMessage("Product created successfully");

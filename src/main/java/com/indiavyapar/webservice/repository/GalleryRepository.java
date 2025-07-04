@@ -12,6 +12,4 @@ import com.indiavyapar.webservice.entity.Website;
 public interface GalleryRepository extends JpaRepository<Gallery, UUID> {
 
 	Page<Gallery> findAllByWebsite(Website website, Pageable pageable);
-
-	Page<Gallery> findAllByWebsiteAndIsActiveTrue(Website website, Pageable pageable);
 }

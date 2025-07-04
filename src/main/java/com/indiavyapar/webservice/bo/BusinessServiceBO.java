@@ -10,6 +10,8 @@ public class BusinessServiceBO {
 	private String serviceDescription;
 	private BigDecimal price;
 	private String serviceImageUrl;
+	private boolean isActive;
+	
 	public UUID getWebsiteId() {
 		return websiteId;
 	}
@@ -40,7 +42,11 @@ public class BusinessServiceBO {
 	public void setServiceImageUrl(String serviceImageUrl) {
 		this.serviceImageUrl = serviceImageUrl;
 	}
-	
-	
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setiActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 
 }

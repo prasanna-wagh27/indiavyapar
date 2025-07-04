@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.hibernate.annotations.JdbcTypeCode;
 
 import com.indiavyapar.webservice.constants.BusinessType;
+import com.indiavyapar.webservice.constants.BusinessCategory;
 import com.indiavyapar.webservice.constants.WebsiteStatus;
 
 import jakarta.persistence.Column;
@@ -58,14 +59,8 @@ public class Website extends Auditable implements Serializable{
 	@Column(name = "business_name")
 	private String businessName;
 
-	@Column(name = "category")
-    private String category;
-
 	@Column(name = "year_of_establishment")
     private String yearOfEstablishment;
-
-	@Column(name = "nature_of_business")
-    private String natureOfBusiness;
 
 	@Column(name = "google_map_link")
     private String googleMapLink;
@@ -86,9 +81,9 @@ public class Website extends Auditable implements Serializable{
     @Column(name = "brochure_url")
     private String brochureUrl;
     
-    @Column(name = "business_type")
+    @Column(name = "business_category")
     @Enumerated(EnumType.STRING)
-    private BusinessType businessType;
+    private BusinessCategory businessCategory;
     
     @Column(name = "facebook_link")
     public String facebookLink;
@@ -102,7 +97,6 @@ public class Website extends Auditable implements Serializable{
     @Column(name = "business_specialisations", columnDefinition = "LONGTEXT")
     private String specialisations;
     
-    
     @JoinColumn(name = "business_address_id", nullable = true)
     @JdbcTypeCode(java.sql.Types.VARCHAR)
     @OneToOne(targetEntity = BusinessAddress.class)
@@ -110,6 +104,14 @@ public class Website extends Auditable implements Serializable{
     
     @Column(name = "logo")
     private String logo;
+    
+    @Column(name = "business_type")
+    @Enumerated(EnumType.STRING)
+    private BusinessType businessType;
+    
+    //Will be implemented at later stage
+    @Column(name = "nature_of_business")
+    private String natureOfBusiness;
 
 	public UUID getWebsiteId() {
 		return websiteId;
@@ -175,28 +177,12 @@ public class Website extends Auditable implements Serializable{
 		this.businessName = businessName;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public String getYearOfEstablishment() {
 		return yearOfEstablishment;
 	}
 
 	public void setYearOfEstablishment(String yearOfEstablishment) {
 		this.yearOfEstablishment = yearOfEstablishment;
-	}
-
-	public String getNatureOfBusiness() {
-		return natureOfBusiness;
-	}
-
-	public void setNatureOfBusiness(String natureOfBusiness) {
-		this.natureOfBusiness = natureOfBusiness;
 	}
 
 	public String getGoogleMapLink() {
@@ -247,12 +233,12 @@ public class Website extends Auditable implements Serializable{
 		this.brochureUrl = brochureUrl;
 	}
 
-	public BusinessType getBusinessType() {
-		return businessType;
+	public BusinessCategory getBusinessCategory() {
+		return businessCategory;
 	}
 
-	public void setBusinessType(BusinessType businessType) {
-		this.businessType = businessType;
+	public void setBusinessCategory(BusinessCategory businessCategory) {
+		this.businessCategory = businessCategory;
 	}
 
 	public String getFacebookLink() {
@@ -301,6 +287,21 @@ public class Website extends Auditable implements Serializable{
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public BusinessType getBusinessType() {
+		return businessType;
+	}
+
+	public void setBusinessType(BusinessType businessType) {
+		this.businessType = businessType;
+	}
+
+	public String getNatureOfBusiness() {
+		return natureOfBusiness;
+	}
+
+	public void setNatureOfBusiness(String natureOfBusiness) {
+		this.natureOfBusiness = natureOfBusiness;
 	}	
-	
 }

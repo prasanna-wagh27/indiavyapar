@@ -47,6 +47,9 @@ public class BusinessService extends Auditable implements Serializable{
 
     @Column(name = "service_image_url", length = 512)
     private String serviceImageUrl;
+    
+    @Column(name = "is_active", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean isActive ;
 
 
 	public UUID getBusinessServiceId() {
@@ -96,5 +99,15 @@ public class BusinessService extends Auditable implements Serializable{
 	public void setServiceImageUrl(String serviceImageUrl) {
 		this.serviceImageUrl = serviceImageUrl;
 	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
+	
 
 }

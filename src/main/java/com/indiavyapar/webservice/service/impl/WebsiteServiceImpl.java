@@ -42,7 +42,7 @@ public class WebsiteServiceImpl implements WebsiteService {
 		Website website = new Website();
 		website.setBusinessName(websiteDTO.getBusinessName());
 		website.setSlogan(websiteDTO.getSlogan());
-		website.setBusinessType(websiteDTO.getBusinessType());
+		website.setBusinessCategory(websiteDTO.getBusinessCategory());
 		
 		website.setLogo(fileUtility.saveImage(file));
 		

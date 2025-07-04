@@ -21,5 +21,5 @@ public interface ProductService {
 
 	void updateProduct(UUID productId, ProductBO productBO) throws Exception;
 
-
+	void deleteProduct(UUID productId) throws Exception;
 }

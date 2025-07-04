@@ -11,10 +11,11 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,12 +73,22 @@ public class ProductController {
 	    }
 
 	    @CrossOrigin
-	    @PostMapping("/update/{productId}")
-	    public ResponseEntity<Response> updateProduct(@PathVariable UUID productId, @RequestBody ProductBO productBO) throws Exception {
+	    @PutMapping("/update/{productId}")
+	    public ResponseEntity<Response> updateProduct(@PathVariable UUID productId, @RequestPart("productBO") ProductBO productBO) throws Exception {
 	        productService.updateProduct(productId, productBO);
 	        Response response = new Response();
 	        response.setStatus(ErrorConstants.SUCCESS.toString());
 	        response.setMessage("Product updated successfully");
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	    }
+	    
+	    @CrossOrigin
+	    @DeleteMapping("/{productId}")
+	    public ResponseEntity<Response> deleteProduct(@PathVariable UUID productId) throws Exception {
+	        productService.deleteProduct(productId);
+	        Response response = new Response();
+	        response.setStatus(ErrorConstants.SUCCESS.toString());
+	        response.setMessage("Product deleted successfully");
 	        return new ResponseEntity<>(response, HttpStatus.OK);
 	    }
 

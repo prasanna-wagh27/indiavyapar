@@ -51,6 +51,7 @@ public class ProductImageServiceImpl implements ProductImageService {
 			ProductImage productImage = new ProductImage();
 			productImage.setProduct(existingProduct);
 			productImage.setImageUrl(fileUtility.saveImage(file));
+			imageEntities.add(productImage);
 		}
 		productImageRepo.saveAll(imageEntities);
 	}

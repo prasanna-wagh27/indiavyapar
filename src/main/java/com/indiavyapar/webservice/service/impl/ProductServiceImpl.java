@@ -119,8 +119,28 @@ public class ProductServiceImpl implements ProductService {
 		existing.setPrice(productBO.getPrice());
 		existing.setActive(productBO.isActive());
 		existing.setWebsite(website);
+		
+//		if(null != images || !images.isEmpty() ) {
+//			List<ProductImage> imageList = new ArrayList<>();
+//			
+//			for(MultipartFile image : images) {
+//				ProductImage productImage = new ProductImage();
+//				productImage.setProduct(existing);
+//				productImage.setImageUrl(fileUtility.saveImage(image));
+//				imageList.add(productImage);
+//			}
+//			productImageRepo.saveAll(imageList);
+//		}
 
 		productRepo.save(existing);
+	}
+
+	@Override
+	public void deleteProduct(UUID productId) throws Exception {
+		if(!productRepo.existsById(productId)) {
+			throw new IndiaVyaparException(ErrorConstants.NOT_FOUND.toString(), "Product not found");
+		}
+		productRepo.deleteById(productId);
 	}
 
 }

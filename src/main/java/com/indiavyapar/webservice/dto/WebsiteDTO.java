@@ -2,10 +2,9 @@ package com.indiavyapar.webservice.dto;
 
 import java.util.UUID;
 
+import com.indiavyapar.webservice.constants.BusinessCategory;
 import com.indiavyapar.webservice.constants.BusinessType;
 import com.indiavyapar.webservice.constants.WebsiteStatus;
-
-import jakarta.persistence.Column;
 
 public class WebsiteDTO {
 
@@ -17,9 +16,8 @@ public class WebsiteDTO {
 	private String templateId;
 	private String urlSlug;
 	private String businessName;
-	private String category;
 	private String yearOfEstablishment;
-	private String natureOfBusiness;
+	private BusinessType businessType;
 	private String addressLineOne;
 	private String addressLine2;
 	private String city;
@@ -31,11 +29,12 @@ public class WebsiteDTO {
 	private String email;
 	private WebsiteStatus websiteStatus;
 	private String brochureUrl;
-	private BusinessType businessType;
+	private BusinessCategory businessCategory;
 	public String facebookLink;
 	public String instagramLink;
 	public String xLink;
 	private String specialisations;
+	private String natureOfBusiness;
 
 	public UUID getWebsiteId() {
 		return websiteId;
@@ -101,14 +100,6 @@ public class WebsiteDTO {
 		this.businessName = businessName;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public String getYearOfEstablishment() {
 		return yearOfEstablishment;
 	}
@@ -117,12 +108,12 @@ public class WebsiteDTO {
 		this.yearOfEstablishment = yearOfEstablishment;
 	}
 
-	public String getNatureOfBusiness() {
-		return natureOfBusiness;
+	public BusinessType getBusinessType() {
+		return businessType;
 	}
 
-	public void setNatureOfBusiness(String natureOfBusiness) {
-		this.natureOfBusiness = natureOfBusiness;
+	public void setBusinessType(BusinessType businessType) {
+		this.businessType = businessType;
 	}
 
 	public String getAddressLineOne() {
@@ -213,12 +204,12 @@ public class WebsiteDTO {
 		this.brochureUrl = brochureUrl;
 	}
 
-	public BusinessType getBusinessType() {
-		return businessType;
+	public BusinessCategory getBusinessCategory() {
+		return businessCategory;
 	}
 
-	public void setBusinessType(BusinessType businessType) {
-		this.businessType = businessType;
+	public void setBusinessCategory(BusinessCategory businessCategory) {
+		this.businessCategory = businessCategory;
 	}
 
 	public String getFacebookLink() {
@@ -252,7 +243,13 @@ public class WebsiteDTO {
 	public void setSpecialisations(String specialisations) {
 		this.specialisations = specialisations;
 	}
-	
-	
 
+	public String getNatureOfBusiness() {
+		return natureOfBusiness;
+	}
+
+	public void setNatureOfBusiness(String natureOfBusiness) {
+		this.natureOfBusiness = natureOfBusiness;
+	}
+	
 }

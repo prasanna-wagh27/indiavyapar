@@ -36,9 +36,6 @@ public class Gallery extends Auditable implements Serializable{
 
 	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@Column(name = "is_active", columnDefinition = "BOOLEAN DEFAULT FALSE")
-	private boolean isActive;
 
 	public UUID getGalleryId() {
 		return galleryId;
@@ -62,14 +59,6 @@ public class Gallery extends Auditable implements Serializable{
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
 	}
 	
 }
